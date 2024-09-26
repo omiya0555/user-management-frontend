@@ -1,12 +1,13 @@
 <template>
-    <div>
-    <h2>Login</h2>
-    <form @submit.prevent="login">
-        <input v-model="email" type="email" placeholder="Email">
-        <input v-model="password" type="password" placeholder="Password">
-        <button type="submit">Login</button>
+    
+    <p class="text-lg mb-4">Login</p>
+    <form @submit.prevent="login" class="bg-gray-200 p-4 w-64 m-auto rounded-sm">
+        
+        <input v-model="email" type="email" class="mb-2 p-1 rounded-sm" placeholder="Email">
+        <input v-model="password" type="password" class="mb-2 p-1 rounded-sm" placeholder="Password">
+        <button type="submit" class="bg-gray-400 hover:bg-gray-600 text-white p-1 rounded-sm">Login</button>
+    
     </form>
-    </div>
 </template>
 
 <script>
@@ -37,3 +38,7 @@ export default {
     }
 };
 </script>
+
+<style>
+
+</style>

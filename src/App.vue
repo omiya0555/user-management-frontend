@@ -1,14 +1,17 @@
 <template>
+  <LoginForm></LoginForm>
   <UserList></UserList>
 </template>
 
 <script>
+import LoginForm from './components/LoginForm.vue';
 import UserList from './components/UserList.vue';
 
 export default {
   name: 'App',
   components: {
     UserList,
+    LoginForm,
   }
 }
 </script>
