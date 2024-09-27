@@ -51,23 +51,59 @@
 
                 // ユーザー一覧を取得
                 const response = await axios.get('http://localhost/api/users', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
                 });
                 this.users = response.data;
+                console.log(this.users)
             } catch (error) {
                 console.error('Failed to fetch users', error);
             }
         },
         methods: {
-            editUser(id) {
-                // 編集処理のロジック
-                console.log('Edit user', id);
+            // mountedにまったく同じ処理があるので、後で共通化したい。
+            async fetchUsers() {
+                try {
+                    // ローカルストレージからトークンを取得
+                    const token = localStorage.getItem('token');
+
+                    // ユーザー一覧を取得
+                    const response = await axios.get('http://localhost/api/users', {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    this.users = response.data;
+                } catch (error) {
+                    console.error('Failed to fetch users', error);
+                }
             },
+
+            // User情報を更新
+            async editUser(id) {
+                // 
+                try{
+                    const token = localStorage.getItem('token');
+                    // 更新する値を格納
+                    const data  = { name: "test-update", email: "test-update@mail", password: "testupdate"}
+                    
+                    // ユーザIDの情報を上で格納した値に更新
+                    await axios.put(`http://localhost/api/users/${id}`, data, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        }
+                    });
+                    this.fetchUsers(); //更新後のUser情報を表示
+                }catch (error){
+                    console.error('Failed to update user', error);
+                }
+            },
+
+            // Userを削除
             async deleteUser(id) {
-                    // 誤操作による削除を防止するためのかくにんフォーム
-                    if(confirm("削除しますか？")){
+                // 誤操作による削除を防止するための確認フォーム
+                if(confirm("削除しますか？")){
                     try {
                         const token = localStorage.getItem('token');
                         await axios.delete(`http://localhost/api/users/${id}`, {
@@ -76,6 +112,9 @@
                             },
                         });
                     // 削除後にリストから削除
+                    // パフォーマンスとコードの簡易さから、フィルターで隠す処理を実装した。
+                    // （または、様々な実装方法を試したいから）
+                    // ほかのユーザーの処理が行われている可能性もあるので、最新のＤＢの情報とは限らない。
                     this.users = this.users.filter(user => user.id !== id); 
                     } catch (error) {
                         console.error('Failed to delete user', error);
