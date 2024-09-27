@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginFrom from '../components/LoginForm.vue'; // ログインページ
-import UserList from '../components/UserList.vue'; // ユーザー一覧ページ
+import LoginFrom from '@/components/LoginForm.vue'; // ログインページ
+import UserList from '@/components/UserList.vue'; // ユーザー一覧ページ
 
 const routes = [
     {

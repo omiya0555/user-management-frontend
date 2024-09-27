@@ -1,5 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './assets/styles.css'  //tailwindのファイルをインポート
+import './assets/styles.css'  // tailwindのファイルをインポート
+import router from './router' // routerのインポート
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.use(router);
+app.mount('#app')
+
