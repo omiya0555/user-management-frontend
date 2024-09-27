@@ -26,12 +26,13 @@ export default {
         // ログアウト処理
         localStorage.removeItem('token'); // トークンを削除
         this.isAuthenticated = false; // 認証状態を更新
-        this.$router.push('/'); // ログインページにリダイレクト
+        this.$router.push('/'); // ログインページ
       }
     }
   },
   watch: {
     // 認証状態が変わったときに再評価
+    // 値が更新されないままルーターに評価されることを防ぐ
     $route() {
       this.isAuthenticated = !!localStorage.getItem('token');
     }

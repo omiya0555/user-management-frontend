@@ -66,15 +66,15 @@
                 console.log('Edit user', id);
             },
             async deleteUser(id) {
-                // 誤操作による削除を防止するためのかくにんフォーム
+                    // 誤操作による削除を防止するためのかくにんフォーム
                     if(confirm("削除しますか？")){
                     try {
-                    const token = localStorage.getItem('token');
-                    await axios.delete(`http://localhost/api/users/${id}`, {
-                        headers: {
-                        Authorization: `Bearer ${token}`,
-                        },
-                    });
+                        const token = localStorage.getItem('token');
+                        await axios.delete(`http://localhost/api/users/${id}`, {
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                            },
+                        });
                     // 削除後にリストから削除
                     this.users = this.users.filter(user => user.id !== id); 
                     } catch (error) {
