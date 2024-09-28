@@ -28,7 +28,7 @@
 ### バックエンド（Laravel API）
 1. **プロジェクトのクローン**:
     ```bash
-    git clone https://github.com/yourusername/backend.git
+    git clone https://github.com/omiya0555/user-management-api.git
     cd backend
     ```
 
@@ -57,7 +57,7 @@
 ### フロントエンド（Vue.js）
 1. **プロジェクトのクローン**:
     ```bash
-    git clone https://github.com/yourusername/frontend.git
+    git clone https://github.com/omiya0555/user-management-frontend.git
     cd frontend
     ```
 
@@ -89,7 +89,7 @@
     ```bash
     curl -X POST http://localhost/api/login \
     -H "Content-Type: application/json" \
-    -d '{"email": "testuser@gmail.com", "password": "testpassword"}'
+    -d '{"email": "testuser@gmail.com", "password": "testuser"}'
     ```
 
 2. **レスポンス例**:
