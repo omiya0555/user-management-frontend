@@ -26,7 +26,7 @@ router.beforeEach(( to, from, next ) => {
     // Localstrageにtokenがあるかで判定
     const isAuthenticated = !!localStorage.getItem('token'); 
     if(to.meta.requiresAuth && !isAuthenticated){
-        next({ name: 'Login'});
+        next({ name: 'LoginForm'});
     }else{
         next();
     }

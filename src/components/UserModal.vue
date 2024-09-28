@@ -56,9 +56,15 @@ export default {
             this.$emit('save', this.userData);
         },
     },
+    
     watch: {
+        // user データの変更を監視し、変更時には指定された処理を行う。
         user: {
+            // 監視が開始された時、即座に監視対象の現在の値で handler を実行
+            // 通常は変更時のみだが、immediate を true にすることで上が実現できる。
             immediate: true,
+            // 変更された値 newValue を引数に持つ handler 関数
+            // user の新しい値をスプレッド構文を用いて userData にコピー
             handler(newValue) {
                 this.userData = { ...newValue };
             },

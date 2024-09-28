@@ -53,7 +53,11 @@
         },
         data() {
             return {
-                userData: { ...this.user }, // 新しいオブジェクトを作成
+                // 新しいオブジェクトを作成
+                // user プロパティを変更するのではなく、userData を変更する。
+                // vue はプロパティが親コンポーネントから渡されるもんであるため
+                // 子コンポーネントで直接変更しないように警告をする。
+                userData: { ...this.user }, 
                 users: [],
                 isModalOpen: false, // モーダルが開いているかどうか
                 isEditMode: false, // 作成か更新かを判別
@@ -91,9 +95,10 @@
                             Authorization: `Bearer ${token}`,
                         },
                     });
+                    // dataに定義した users[] に一覧データを格納
                     this.users = response.data;
                 } catch (error) {
-                    console.error('Failed to fetch users', error);
+                    console.error('ユーザー情報の取得に失敗しました。', error);
                 }
             },
 
